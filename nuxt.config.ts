@@ -21,5 +21,9 @@ export default defineNuxtConfig({
         tailwindcss: {
             // Options
         }
-    }
+    },
+    runtimeConfig: {
+        tmdbApiKey: process.env.TMDB_API_KEY,
+        tmdbAuthKey: process.env.TMDB_AUTH_KEY,
+    },
 })
