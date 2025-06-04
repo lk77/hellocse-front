@@ -26,9 +26,18 @@ export default defineEventHandler(async (event) => {
     };
 
     return axios.request(options)
-        .then(response => response.data)
-        .catch(error => createError({
-            statusCode: error.response.status,
-            statusMessage: error.response.statusText
-        }));
+        .then(response => <MovieResponse> response.data)
+        .catch(error => {
+            if(error.response) {
+                return createError({
+                    statusCode: error.response.status,
+                    statusMessage: error.response.statusText
+                })
+            }
+
+            return createError({
+                statusCode: 500,
+                statusMessage: error.name
+            });
+        });
 })
