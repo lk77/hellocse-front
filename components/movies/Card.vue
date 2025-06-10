@@ -19,7 +19,7 @@ const languageNames = new Intl.DisplayNames(['en'], {type: 'language'});
 
 <template>
     <div class="flex flex-row w-full h-full rounded-xl overflow-hidden border-1 border-solid border-yellow-500">
-        <div class="w-[30%] h-full bg-yellow-300">
+        <div class="w-[30%] h-full bg-black">
             <img :src="imagePrefix + movie.poster_path" alt="movie poster" class="h-full w-auto"/>
         </div>
         <div class="flex w-[70%] h-full bg-black">

@@ -26,4 +26,9 @@ export default defineNuxtConfig({
         tmdbApiKey: process.env.TMDB_API_KEY,
         tmdbAuthKey: process.env.TMDB_AUTH_KEY,
     },
+    nitro: {
+        publicAssets: [
+            {dir: "./../node_modules/tinymce", baseURL: "/assets/tinymce"}
+        ]
+    }
 })

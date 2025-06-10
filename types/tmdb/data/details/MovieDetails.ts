@@ -2,7 +2,7 @@ import type {Genre} from "~/types/tmdb/data/Genre";
 import type {ProductionCompanies} from "~/types/tmdb/data/details/production/ProductionCompanies";
 import type {ProductionCountries} from "~/types/tmdb/data/details/production/ProductionCountries";
 
-export interface Movie {
+export interface MovieDetails {
     adult: boolean;
     backdrop_path: string;
     belongs_to_collection: null;

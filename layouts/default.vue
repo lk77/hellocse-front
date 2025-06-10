@@ -18,18 +18,9 @@ useHead({
 </script>
 
 <template>
-    <v-app :theme="theme">
+    <v-app theme="dark">
         <v-app-bar class="px-3">
             <v-app-bar-title>{{route.meta.title}}</v-app-bar-title>
-
-            <v-spacer></v-spacer>
-
-            <v-btn
-                :prepend-icon="theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"
-                text="Toggle Theme"
-                slim
-                @click="onClick"
-            ></v-btn>
         </v-app-bar>
 
         <v-main>

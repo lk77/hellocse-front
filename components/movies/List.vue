@@ -16,21 +16,53 @@ function groupItemsBy(items, size) {
     return groupedItems;
 }
 
-const groupedItems = computed(() => groupItemsBy(items, 3));
+
+
+const nbItems = ref(3);
+
+const groupedItems = computed(() => groupItemsBy(items, nbItems.value));
+
+if (import.meta.client) {
+    const computeNbItems = () => {
+        if(window.innerWidth < 1280) {
+            return 1;
+        }
+
+        if(window.innerWidth > 1920) {
+            return 3;
+        }
+
+
+
+        return 2;
+    };
+
+    onMounted(() => {
+        nbItems.value = computeNbItems();
+        window.addEventListener("resize", () => {
+            nbItems.value = computeNbItems();
+        });
+    })
+}
 </script>
 
 <template>
     <div class="w-full h-full">
         <v-infinite-scroll height="auto" :items="groupedItems"  @load="load" class="flex flex-col flex-wrap">
             <template v-for="(groupedItem, index) in groupedItems" :key="'group-'+index">
-                <div class="flex flex-row w-full h-[400px]" v-if="groupedItem.length > 2">
-                    <div class="w-1/3 h-[400px] !p-2" v-for="(item, index) in groupedItem" :key="item">
+                <div class="flex flex-row w-full h-[400px]" v-if="groupedItem.length > nbItems - 1">
+                    <div class=" h-[400px] !p-2" v-for="(item, index) in groupedItem" :key="item" :class="{
+                        'w-1/3': nbItems === 3,
+                        'w-1/2': nbItems === 2,
+                        'w-full': nbItems === 1
+
+                    }">
                         <MoviesCard :movie="item" :index="index"/>
                     </div>
                 </div>
             </template>
             <template v-slot:empty>
-                <v-alert type="warning" style="display:none">No more movies!</v-alert>
+                <v-alert type="warning">No more movies!</v-alert>
             </template>
             <template v-slot:error="{ props }">
                 <v-alert type="error">
