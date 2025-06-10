@@ -20,7 +20,10 @@ useHead({
 <template>
     <v-app theme="dark">
         <v-app-bar class="px-3">
-            <v-app-bar-title>{{route.meta.title}}</v-app-bar-title>
+            <v-app-bar-title>
+                <NuxtLink to="/">{{route.meta.title}}</NuxtLink>
+
+            </v-app-bar-title>
         </v-app-bar>
 
         <v-main>

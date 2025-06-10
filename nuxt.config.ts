@@ -18,8 +18,17 @@ export default defineNuxtConfig({
         vuetifyOptions: {
             /* vuetify options */
         },
-        tailwindcss: {
-            // Options
+    },
+    tailwindcss: {
+        theme: {
+            screens: {
+                'xs': {maxWidth: '599px'},
+                'sm': '600x',
+                'md': '960px',
+                'lg': '1280px',
+                'xl': '1920px',
+                '2xl': '2560px',
+            }
         }
     },
     runtimeConfig: {

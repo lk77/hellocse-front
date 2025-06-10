@@ -1,20 +1,22 @@
 <script setup lang="ts">
-const comments = [
-    {username: '', message: 'first comment'},
-    {username: '', message: 'second comment'},
-    {username: '', message: 'third comment'},
-]
+const {comments} = defineProps<{
+    comments: object[]
+}>()
 </script>
 
 <template>
-    <div class="w-full h-full pt-5">
-        <h1 class="text-left">
-            Comments
-        </h1>
-        <div class="flex flex-col h-[100px] pt-5">
-            <div class=" h-[100px] !p-2 w-[300px]" v-for="(comment, index) in comments" :key="index">
-                <CommentsCard :comment="comment"/>
-            </div>
+    <div class="w-full h-full">
+        <div class="flex flex-col h-[100px]">
+            <template v-if="comments.length > 0">
+                <div class=" h-[100px] !p-2 w-full" v-for="(comment, index) in comments" :key="index">
+                    <CommentsCard :comment="comment"/>
+                </div>
+            </template>
+            <template v-else>
+                <h3 class="text-left font-italic text-sm">
+                    There is no comment for that movie
+                </h3>
+            </template>
         </div>
     </div>
 </template>

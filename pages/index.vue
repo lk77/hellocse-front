@@ -23,7 +23,7 @@ async function api(): Promise<array> {
     })
 
     page.value = data.page;
-    //totalPages.value = data.total_pages;
+    totalPages.value = data.total_pages;
     totalResults.value = data.total_results;
 
     return data.results;

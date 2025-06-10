@@ -10,7 +10,7 @@ const imagePrefix = 'https://image.tmdb.org/t/p/w45/'
 </script>
 
 <template>
-    <div class="flex flex-row w-full h-full rounded-xl overflow-hidden border-1 border-solid border-black" v-if="cast.profile_path">
+    <div class="flex flex-row w-full h-full rounded-xl overflow-hidden border-1 border-solid border-black">
         <div class="w-[20%] h-full bg-yellow-500">
             <img :src="imagePrefix + cast.profile_path" alt="profile poster" class="h-full w-auto"/>
         </div>
