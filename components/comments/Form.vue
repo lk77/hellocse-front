@@ -7,7 +7,7 @@ const {comments} = defineProps<{
     comments: object[]
 }>();
 
-alphaNum.$validator = helpers.regex(/^[\d\w\s!?</>]*$/);
+alphaNum.$validator = helpers.regex(/^[\d\D\w\W\s\S]*$/);
 
 const textField = ref();
 const starWidth = ref(60);
@@ -81,10 +81,11 @@ const submit = async () => {
                 ></v-rating>
             </div>
             <div class="flex flex-col pt-5 h-[300px] v-input--error">
-                <Editor
-                    :tinymceScriptSrc="'/assets/tinymce/tinymce.js'"
-                    licenseKey="3YvmGFw,dfr,@pQ(vQz3yFUBNJweE2x66NPM#{xW1u$%Vv7zh.LpQQeX%p{6T5Ty0"
-                    :init="{
+                <LazyClientOnly>
+                    <Editor
+                        :tinymceScriptSrc="'/assets/tinymce/tinymce.js'"
+                        licenseKey="3YvmGFw,dfr,@pQ(vQz3yFUBNJweE2x66NPM#{xW1u$%Vv7zh.LpQQeX%p{6T5Ty0"
+                        :init="{
                         skin: 'oxide-dark',
                         toolbar_mode: 'sliding',
                         plugins: [],
@@ -92,8 +93,9 @@ const submit = async () => {
                         valid_elements: '',
                         toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | removeformat',
                   }"
-                    v-model="state.message"
-                />
+                        v-model="state.message"
+                    />
+                </LazyClientOnly>
                 <div class="v-input__details" role="alert" aria-live="polite" v-if="v$.message.$errors.length > 0">
                     <div class="v-messages">
                         <div class="v-messages__message">{{ v$.message.$errors[0].$message }}</div>
@@ -109,7 +111,7 @@ const submit = async () => {
                     block
                     @click="submit"
                 >
-                    Submit
+                    Add a Comment
                 </v-btn>
             </div>
         </div>

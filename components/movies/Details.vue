@@ -18,12 +18,12 @@ const emptyStar = 10 - halfStar - fullStar;
 <template>
     <div class="flex flex-col w-full h-full rounded-xl overflow-hidden border-1 border-solid border-yellow-500">
         <div class="flex flex-row w-full h-full" style="z-index:20;">
-            <div class="flex flex-col !m-8 overflow-hidden w-full">
+            <div class="flex flex-col !m-2 sm:!m-5 md:!m-8 overflow-hidden w-full">
                 <div class="flex flex-column flex-sm-row flex-wrap">
-                    <div class="md:w-1/12 w-full">
-                        <img :src="imagePrefix + '/w154' +  movie.poster_path" alt="movie poster" class="w-[154px] h-auto !m-auto"/>
+                    <div class="xl:w-1/12 w-full">
+                        <img :src="imagePrefix + '/w154' +  movie.poster_path" alt="movie poster" class="w-[154px] h-auto !m-auto object-cover pt-2 xl:pt-0"/>
                     </div>
-                    <div class="flex flex-col sm:w-9/12 xs:w-full pl-5">
+                    <div class="flex flex-col xl:w-9/12 xs:w-full pl-5 pt-2 xl:pt-0">
                         <h1 class="font-sans font-bold text-left text-white" :class="movie.title.length < 20 ? 'text-4xl' : 'text-3xl'">
                             {{ movie.title }}
                         </h1>
@@ -47,26 +47,27 @@ const emptyStar = 10 - halfStar - fullStar;
                             <v-icon icon="mdi-star-outline" color="yellow-darken-3" v-for="n in emptyStar" :key="n"></v-icon>
                             <span class="text-yellow-darken-3 pl-2">({{ movie.vote_count }} votes)</span>
                         </div>
-                        <div class="pt-5 sm:min-h-[200px] xl:min-h-0 overflow-hidden">
+                        <div class="pt-5 xl:min-h-0 overflow-hidden">
                             <p class="!text-left pr-2 h-[100px]">
                                 {{ movie.overview }}
                             </p>
                         </div>
                     </div>
                     <div class="flex flex-col w-full xl:w-2/12 p-1">
-                        <div class="xl:absolute xl:right-0 -mr-6 w-full sm:w-auto" style="margin-right: -50px;">
+                        <div class="xl:absolute xl:right-0 -mr-6 w-full sm:w-auto">
                             <MoviesCreditsCrewList :items="credits.crew"></MoviesCreditsCrewList>
                             <MoviesCreditsCastList :items="credits.cast"></MoviesCreditsCastList>
                         </div>
                     </div>
                 </div>
+                <hr class="xl:hidden !m-2 text-yellow-darken-3"/>
                 <div class="flex flex-row sm:w-full xl:w-10/12">
                     <div class="flex w-full">
                         <div class="flex flex-col-reverse xl:flex-row w-full">
                             <div class="w-full xl:w-1/2">
                                 <CommentsForm :comments="comments"></CommentsForm>
                             </div>
-                            <div class="w-full xl:w-1/2 sm:pb-5 md:pl-5">
+                            <div class="w-full xl:w-1/2 sm:!pb-5 xl:!pl-5">
                                 <ClientOnly>
                                     <CommentsList :comments="comments"></CommentsList>
                                     <template #fallback>

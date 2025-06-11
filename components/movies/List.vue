@@ -32,8 +32,6 @@ if (import.meta.client) {
             return 3;
         }
 
-
-
         return 2;
     };
 
@@ -50,8 +48,8 @@ if (import.meta.client) {
     <div class="w-full h-full">
         <v-infinite-scroll height="auto" :items="groupedItems"  @load="load" class="flex flex-col flex-wrap">
             <template v-for="(groupedItem, index) in groupedItems" :key="'group-'+index">
-                <div class="flex flex-row w-full h-[400px]" v-if="groupedItem.length > nbItems - 1">
-                    <div class=" h-[400px] !p-2" v-for="(item, index) in groupedItem" :key="item" :class="{
+                <div class="flex flex-row w-full h-[350px] md:h-[400px]" v-if="groupedItem.length > nbItems - 1">
+                    <div class="h-[350px] md:h-[400px] !p-2" v-for="(item, index) in groupedItem" :key="item" :class="{
                         'w-1/3': nbItems === 3,
                         'w-1/2': nbItems === 2,
                         'w-full': nbItems === 1

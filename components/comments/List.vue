@@ -6,7 +6,7 @@ const {comments} = defineProps<{
 
 <template>
     <div class="w-full h-full">
-        <div class="flex flex-col h-[100px]">
+        <div class="flex flex-col">
             <template v-if="comments.length > 0">
                 <div class=" h-[100px] !p-2 w-full" v-for="(comment, index) in comments" :key="index">
                     <CommentsCard :comment="comment"/>
