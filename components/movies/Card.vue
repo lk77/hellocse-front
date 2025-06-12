@@ -30,13 +30,13 @@ const languageNames = new Intl.DisplayNames(['en'], {type: 'language'});
         </div>
         <div class="flex h-full flex-grow bg-black">
             <div class="flex flex-col !m-3 md:!m-8 overflow-hidden w-full relative">
-                <h1 class="font-sans font-bold font-bold text-left text-white w-[80%]" :class="movie.title.length < 20 ? 'text-4xl' : 'text-3xl'">
+                <h1 class="font-sans font-bold font-bold text-left text-white w-[80%]" :class="movie.title.length < 20 ? 'text-4xl' : 'text-3xl'" data-test="movie.title">
                     {{ movie.title }}
                 </h1>
                 <ul class="flex flex-row py-3">
-                    <li class="font-sans font-semibold mr-3 !px-2 bg-yellow-500 text-white rounded-sm text-center">{{ releaseYear }}</li>
-                    <li class="font-sans font-semibold mr-3 !px-2 bg-yellow-500 text-white rounded-sm text-center">{{ movie.vote_count }} votes</li>
-                    <li class="font-sans font-semibold mr-3 !px-2 bg-yellow-500 text-white rounded-sm text-center">{{ languageNames.of(movie.original_language) }}</li>
+                    <li class="font-sans font-semibold mr-3 !px-2 bg-yellow-500 text-white rounded-sm text-center" data-test="releaseYear">{{ releaseYear }}</li>
+                    <li class="font-sans font-semibold mr-3 !px-2 bg-yellow-500 text-white rounded-sm text-center" data-test="movie.vote_count">{{ movie.vote_count }} votes</li>
+                    <li class="font-sans font-semibold mr-3 !px-2 bg-yellow-500 text-white rounded-sm text-center" data-test="movie.original_language">{{ languageNames.of(movie.original_language) }}</li>
                 </ul>
                 <div class="flex flex-row py-1">
                     <v-icon v-for="n in fullStar" :key="n" icon="mdi-star" color="yellow-darken-3"/>
@@ -44,7 +44,7 @@ const languageNames = new Intl.DisplayNames(['en'], {type: 'language'});
                     <v-icon v-for="n in emptyStar" :key="n" icon="mdi-star-outline" color="yellow-darken-3"/>
                 </div>
                 <div class="fade !h-[50px] md:!h-[100px]">
-                    <p class="!text-left pr-2 h-[50px] md:h-[100px] w-[80%]">
+                    <p class="!text-left pr-2 h-[50px] md:h-[100px] w-[80%]" data-test="movie.overview">
                         {{ movie.overview }}
                     </p>
                 </div>

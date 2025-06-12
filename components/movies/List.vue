@@ -47,7 +47,7 @@ if (import.meta.client) {
 
 <template>
     <div class="w-full h-full">
-        <v-infinite-scroll height="auto" :items="items"  class="flex flex-col flex-wrap" @load="load">
+        <v-infinite-scroll height="auto" :items="items" class="flex flex-col flex-wrap" @load="load">
             <div class="flex flex-row flex-wrap w-full">
                 <div
 v-for="(item, index) in items" :key="item" class="!p-2 h-[400px]" :class="{
@@ -55,12 +55,12 @@ v-for="(item, index) in items" :key="item" class="!p-2 h-[400px]" :class="{
                         'w-1/2': nbItems === 2,
                         'w-full': nbItems === 1
 
-                    }">
+                    }" :data-test="'movie-'+index">
                     <MoviesCard :movie="item" :index="index" :img-quality="imgQuality" :img-width="imgWidth" :img-height="imgHeight"/>
                 </div>
             </div>
             <template #empty>
-                <v-alert type="warning">No more movies!</v-alert>
+                <v-alert type="warning" data-test="empty">No more movies!</v-alert>
             </template>
             <template #error="{ props }">
                 <v-alert type="error">
