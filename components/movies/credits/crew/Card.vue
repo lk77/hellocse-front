@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import type {MovieCredit} from "~/types/tmdb/data/credits/MovieCredit";
 
-const {cast, index} = defineProps<{
-    cast: MovieCredit,
-    index: number
+const {cast} = defineProps<{
+    cast: MovieCredit
 }>()
 
 const imagePrefix = 'https://image.tmdb.org/t/p/w45/'
@@ -12,7 +11,7 @@ const imagePrefix = 'https://image.tmdb.org/t/p/w45/'
 <template>
     <div class="flex flex-row w-full h-full rounded-xl overflow-hidden border-1 border-solid border-black">
         <div class="w-[20%] h-full bg-yellow-500">
-            <img :src="imagePrefix + cast.profile_path" alt="profile poster" class="h-full w-auto"/>
+            <img :src="imagePrefix + cast.profile_path" alt="profile poster" class="h-full w-auto">
         </div>
         <div class="flex h-full bg-yellow-500 !p-3" :class="cast.profile_path ? 'w-[80%]' : 'w-full'">
             <div class="flex flex-col overflow-hidden w-full relative">

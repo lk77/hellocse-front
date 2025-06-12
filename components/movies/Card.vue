@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import type {Movie} from "~/types/tmdb/data/Movie";
 
-const {movie, index, imgQuality, imgWidth, imgHeight} = defineProps<{
+const {movie, imgQuality, imgWidth, imgHeight} = defineProps<{
     movie: Movie,
-    index: number,
     imgQuality: string,
     imgWidth: number,
     imgHeight: number
 }>()
-
 
 const imagePrefix = 'https://image.tmdb.org/t/p/';
 
@@ -23,11 +21,12 @@ const languageNames = new Intl.DisplayNames(['en'], {type: 'language'});
 
 <template>
     <div class="flex flex-row w-full h-full rounded-xl overflow-hidden border-1 border-solid border-yellow-500 relative">
-        <div class="absolute right-0 top-0 !m-5 bg-black" v-if="movie.poster_path">
-            <img :src="imagePrefix + imgQuality + movie.poster_path" alt="movie poster" class="object-cover" :style="{
+        <div v-if="movie.poster_path" class="absolute right-0 top-0 !m-5 bg-black">
+            <img
+:src="imagePrefix + imgQuality + movie.poster_path" alt="movie poster" class="object-cover" :style="{
                 width: imgWidth + 'px',
                 height: imgHeight + 'px'
-            }"/>
+            }">
         </div>
         <div class="flex h-full flex-grow bg-black">
             <div class="flex flex-col !m-3 md:!m-8 overflow-hidden w-full relative">
@@ -40,9 +39,9 @@ const languageNames = new Intl.DisplayNames(['en'], {type: 'language'});
                     <li class="font-sans font-semibold mr-3 !px-2 bg-yellow-500 text-white rounded-sm text-center">{{ languageNames.of(movie.original_language) }}</li>
                 </ul>
                 <div class="flex flex-row py-1">
-                    <v-icon icon="mdi-star" color="yellow-darken-3" v-for="n in fullStar" :key="n"></v-icon>
-                    <v-icon icon="mdi-star-half-full" color="yellow-darken-3" v-for="n in halfStar" :key="n"></v-icon>
-                    <v-icon icon="mdi-star-outline" color="yellow-darken-3" v-for="n in emptyStar" :key="n"></v-icon>
+                    <v-icon v-for="n in fullStar" :key="n" icon="mdi-star" color="yellow-darken-3"/>
+                    <v-icon v-for="n in halfStar" :key="n" icon="mdi-star-half-full" color="yellow-darken-3"/>
+                    <v-icon v-for="n in emptyStar" :key="n" icon="mdi-star-outline" color="yellow-darken-3"/>
                 </div>
                 <div class="fade !h-[50px] md:!h-[100px]">
                     <p class="!text-left pr-2 h-[50px] md:h-[100px] w-[80%]">
@@ -57,8 +56,8 @@ const languageNames = new Intl.DisplayNames(['en'], {type: 'language'});
                                 variant="outlined"
                                 prepend-icon="mdi-play-outline"
                             >
-                                <template v-slot:prepend>
-                                    <v-icon color="yellow-darken-3"></v-icon>
+                                <template #prepend>
+                                    <v-icon color="yellow-darken-3"/>
                                 </template>
 
                                 See More

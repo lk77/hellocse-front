@@ -76,7 +76,7 @@ async function load({ done }) {
             items.value.push(...res)
 
             done('ok')
-        }).catch((err) => {
+        }).catch(() => {
             done('error')
         })
     } else {
@@ -122,10 +122,10 @@ watch(search, debounce((value) => {
                     tile
                     single-line
                     class="!m-1"
-                ></v-text-field>
+                />
             </div>
             <div class="flex flex-grow w-full h-auto px-4 pt-4">
-                <MoviesList :key="searchKey ? searchKey : 'discover'" :items="items" :load="load" :totalPages="totalPages" :totalResults="totalResults" />
+                <MoviesList :key="searchKey ? searchKey : 'discover'" :items="items" :load="load" :total-pages="totalPages" :total-results="totalResults" />
             </div>
 
         </div>

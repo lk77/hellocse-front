@@ -1,7 +1,6 @@
 <script setup lang="ts">
-const {cast, index} = defineProps<{
-    cast: MovieCredit,
-    index: number
+const {cast} = defineProps<{
+    cast: MovieCredit
 }>()
 
 const imagePrefix = 'https://image.tmdb.org/t/p/w45/'
@@ -10,7 +9,7 @@ const imagePrefix = 'https://image.tmdb.org/t/p/w45/'
 <template>
     <div class="flex flex-row w-full h-full rounded-xl overflow-hidden border-1 border-solid border-yellow-500 xs:m-auto">
         <div class="w-[20%] h-full bg-black">
-            <img :src="imagePrefix + cast.profile_path" alt="profile poster" class="h-full w-auto"/>
+            <img :src="imagePrefix + cast.profile_path" alt="profile poster" class="h-full w-auto">
         </div>
         <div class="flex w-[80%] h-full bg-black !p-3">
             <div class="flex flex-col overflow-hidden w-full relative">

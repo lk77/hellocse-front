@@ -28,7 +28,7 @@ const comments = await useStorage('movie_comments_'+route.params.movie_id, []);
     >
         <div class="flex flex-col w-full h-full">
             <div class="flex flex-grow w-full h-auto">
-                <MoviesDetails :movie="movie" :credits="credits" :comments="comments"/>
+                <MoviesDetails v-model:comments="comments" :movie="movie" :credits="credits"/>
             </div>
         </div>
     </v-sheet>

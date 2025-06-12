@@ -11,6 +11,9 @@ export default defineNuxtConfig({
         '@vueuse/nuxt',
         '@pinia/nuxt'
     ],
+    eslint: {
+        // options here
+    },
     vuetify: {
         moduleOptions: {
             /* module specific options */

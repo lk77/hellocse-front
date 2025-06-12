@@ -6,6 +6,7 @@ import { required, alpha, alphaNum, numeric, minLength, maxLength, minValue, max
 const {comments} = defineProps<{
     comments: object[]
 }>();
+const emit = defineEmits(['update:comments']);
 
 alphaNum.$validator = helpers.regex(/^[\d\D\w\W\s\S]*$/);
 
@@ -49,11 +50,13 @@ const submit = async () => {
 
     if (!isFormCorrect) return
 
-    comments.push({
+    const newComments = [...comments, {
         username: state.username,
         rating: state.rating,
         message: state.message
-    });
+    }];
+
+    emit('update:comments', newComments);
 
     clear();
 }
@@ -64,27 +67,28 @@ const submit = async () => {
         <div class="flex flex-col h-full w-full">
             <div class="flex flex-col h-[100px]">
                 <v-text-field
-                    hide-details="auto"
-                    label="Username"
                     ref="textField"
                     v-model="state.username"
+                    hide-details="auto"
+                    label="Username"
                     required
                     :error-messages="v$.username.$errors.map(e => e.$message)"
-                ></v-text-field>
+                />
             </div>
-            <div class="flex flex-col h-[100px] w-full pt-5" v-if="starWidth">
+            <div v-if="starWidth" class="flex flex-col h-[100px] w-full pt-5">
                 <v-rating
+                    v-model="state.rating"
                     hover
                     length="10"
                     :size="starWidth"
-                    v-model="state.rating"
-                ></v-rating>
+                />
             </div>
             <div class="flex flex-col pt-5 h-[300px] v-input--error">
                 <LazyClientOnly>
                     <Editor
-                        :tinymceScriptSrc="'/assets/tinymce/tinymce.js'"
-                        licenseKey="3YvmGFw,dfr,@pQ(vQz3yFUBNJweE2x66NPM#{xW1u$%Vv7zh.LpQQeX%p{6T5Ty0"
+                        v-model="state.message"
+                        :tinymce-script-src="'/assets/tinymce/tinymce.js'"
+                        license-key="3YvmGFw,dfr,@pQ(vQz3yFUBNJweE2x66NPM#{xW1u$%Vv7zh.LpQQeX%p{6T5Ty0"
                         :init="{
                         skin: 'oxide-dark',
                         toolbar_mode: 'sliding',
@@ -93,10 +97,9 @@ const submit = async () => {
                         valid_elements: '',
                         toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | removeformat',
                   }"
-                        v-model="state.message"
                     />
                 </LazyClientOnly>
-                <div class="v-input__details" role="alert" aria-live="polite" v-if="v$.message.$errors.length > 0">
+                <div v-if="v$.message.$errors.length > 0" class="v-input__details" role="alert" aria-live="polite">
                     <div class="v-messages">
                         <div class="v-messages__message">{{ v$.message.$errors[0].$message }}</div>
                     </div>
