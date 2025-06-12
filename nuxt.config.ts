@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     css: ['~/assets/scss/main.scss'],
     modules: [
         '@nuxt/eslint',
-        '@nuxt/test-utils',
+        '@nuxt/test-utils/module',
         'vuetify-nuxt-module',
         '@nuxtjs/tailwindcss',
         '@vueuse/nuxt',

@@ -65,7 +65,7 @@ const submit = async () => {
 <template>
     <form class="flex flex-row w-full h-full">
         <div class="flex flex-col h-full w-full">
-            <div class="flex flex-col h-[100px]">
+            <div class="flex flex-col h-[100px]" data-test="state.username">
                 <v-text-field
                     ref="textField"
                     v-model="state.username"
@@ -75,7 +75,7 @@ const submit = async () => {
                     :error-messages="v$.username.$errors.map(e => e.$message)"
                 />
             </div>
-            <div v-if="starWidth" class="flex flex-col h-[100px] w-full pt-5">
+            <div v-if="starWidth" class="flex flex-col h-[100px] w-full pt-5" data-test="state.rating">
                 <v-rating
                     v-model="state.rating"
                     hover

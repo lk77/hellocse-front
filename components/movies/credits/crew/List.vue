@@ -15,8 +15,8 @@ const orderedItems = computed(() => items
     <div class="w-full">
         <div class="flex flex-xs-row flex-sm-row flex-lg-column flex-wrap w-full">
             <template v-for="(item, index) in orderedItems">
-                <div v-if="item.profile_path" :key="item" class="h-[100px] sm:w-[270px] w-full !p-2 !m-auto sm:!m-0">
-                    <MoviesCreditsCrewCard :cast="item" :index="index"/>
+                <div v-if="item.profile_path" :key="item" class="h-[100px] sm:w-[270px] w-full !p-2 !m-auto sm:!m-0" :data-test="'crew-'+index">
+                    <MoviesCreditsCrewCard :crew="item" :index="index"/>
                 </div>
             </template>
         </div>
