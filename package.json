@@ -20,6 +20,7 @@
     "@vueuse/core": "^13.3.0",
     "@vueuse/nuxt": "^13.3.0",
     "axios": "^1.9.0",
+    "debounce": "^2.2.0",
     "eslint": "^9.28.0",
     "moviedb-promise": "^4.0.7",
     "nuxt": "^3.17.5",

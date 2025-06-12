@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import type {Movie} from "~/types/tmdb/data/Movie";
 
-const {movie, index} = defineProps<{
+const {movie, index, imgQuality, imgWidth, imgHeight} = defineProps<{
     movie: Movie,
-    index: number
+    index: number,
+    imgQuality: string,
+    imgWidth: number,
+    imgHeight: number
 }>()
 
-const imagePrefix = 'https://image.tmdb.org/t/p/w300/'
+
+const imagePrefix = 'https://image.tmdb.org/t/p/';
 
 const fullStar = Math.floor(movie.vote_average);
 const halfStar = movie.vote_average - fullStar > 0.15 ? 1 : 0;
@@ -18,13 +22,16 @@ const languageNames = new Intl.DisplayNames(['en'], {type: 'language'});
 </script>
 
 <template>
-    <div class="flex flex-row w-full h-full rounded-xl overflow-hidden border-1 border-solid border-yellow-500">
-        <div class="w-[30%] h-full bg-black">
-            <img :src="imagePrefix + movie.poster_path" alt="movie poster" class="h-full w-auto object-cover"/>
+    <div class="flex flex-row w-full h-full rounded-xl overflow-hidden border-1 border-solid border-yellow-500 relative">
+        <div class="absolute right-0 top-0 !m-5 bg-black" v-if="movie.poster_path">
+            <img :src="imagePrefix + imgQuality + movie.poster_path" alt="movie poster" class="object-cover" :style="{
+                width: imgWidth + 'px',
+                height: imgHeight + 'px'
+            }"/>
         </div>
-        <div class="flex w-[70%] h-full bg-black">
+        <div class="flex h-full flex-grow bg-black">
             <div class="flex flex-col !m-3 md:!m-8 overflow-hidden w-full relative">
-                <h1 class="font-sans font-bold  font-bold text-left text-white" :class="movie.title.length < 20 ? 'text-4xl' : 'text-3xl'">
+                <h1 class="font-sans font-bold font-bold text-left text-white w-[80%]" :class="movie.title.length < 20 ? 'text-4xl' : 'text-3xl'">
                     {{ movie.title }}
                 </h1>
                 <ul class="flex flex-row py-3">
@@ -38,7 +45,7 @@ const languageNames = new Intl.DisplayNames(['en'], {type: 'language'});
                     <v-icon icon="mdi-star-outline" color="yellow-darken-3" v-for="n in emptyStar" :key="n"></v-icon>
                 </div>
                 <div class="fade !h-[50px] md:!h-[100px]">
-                    <p class="!text-left pr-2 h-[50px] md:h-[100px]">
+                    <p class="!text-left pr-2 h-[50px] md:h-[100px] w-[80%]">
                         {{ movie.overview }}
                     </p>
                 </div>
