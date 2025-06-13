@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import type {Comment} from "~/types/comments/comment";
 import Editor from '@tinymce/tinymce-vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required, alpha, alphaNum, numeric, minLength, maxLength, minValue, maxValue, helpers } from '@vuelidate/validators'
 
 const {comments} = defineProps<{
-    comments: object[]
+    comments: Comment[]
 }>();
 const emit = defineEmits(['update:comments']);
 
@@ -40,9 +41,9 @@ const v$ = useVuelidate(rules, state);
 function clear () {
     v$.value.$reset()
 
-    for (const [key, value] of Object.entries(initialState)) {
-        state[key] = value
-    }
+    state.username = initialState.username;
+    state.rating = initialState.rating;
+    state.message = initialState.message
 }
 
 const submit = async () => {
@@ -72,7 +73,7 @@ const submit = async () => {
                     hide-details="auto"
                     label="Username"
                     required
-                    :error-messages="v$.username.$errors.map(e => e.$message)"
+                    :error-messages="/* readonly string[] */[...v$.username.$errors.map((e:any):string => e.$message)]"
                 />
             </div>
             <div v-if="starWidth" class="flex flex-col h-[100px] w-full pt-5" data-test="state.rating">

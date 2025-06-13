@@ -1,4 +1,4 @@
-
+import { expect, it } from 'vitest'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
 import Card from "~/components/movies/Card.vue";
 
@@ -14,13 +14,16 @@ it('can display a movie', async () => {
                 title: "movie title",
                 vote_count: 77,
                 original_language: 'en-US',
-                overview: 'movie overview text'
+                overview: 'movie overview text',
+                adult: false,
+                backdrop_path: 'backdrop_path',
+                original_title: 'original_title',
+                popularity: 50,
+                video : false
             },
             imgQuality: 'w300',
             imgWidth: 300,
             imgHeight: 450
-
-
         }
     })
 

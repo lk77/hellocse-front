@@ -1,33 +1,44 @@
+import { expect, it } from 'vitest'
 import {mountSuspended} from '@nuxt/test-utils/runtime'
 import List from "~/components/movies/List.vue";
 
 
-it('can display movies', async () => {
+it('can display comments', async () => {
     const component = await mountSuspended(List, {
         props: {
             items: [
                 {
                     id: 1,
+                    adult: false,
+                    video: false,
                     vote_average: 5.3,
                     release_date: '2025-06-12',
                     poster_path: "poster_path",
                     title: "movie title",
+                    original_title: "movie title",
                     vote_count: 77,
                     original_language: 'en-US',
-                    overview: 'movie overview text'
+                    overview: 'movie overview text',
+                    backdrop_path: 'backdrop_path',
+                    popularity: 40
                 },
                 {
                     id: 2,
+                    adult: false,
+                    video: false,
                     vote_average: 8.0,
                     release_date: '2024-06-12',
                     poster_path: "poster_path",
                     title: "another movie title",
+                    original_title: "another movie title",
                     vote_count: 703,
                     original_language: 'en',
-                    overview: 'another movie overview text'
+                    overview: 'another movie overview text',
+                    backdrop_path: 'backdrop_path',
+                    popularity: 40
                 }
             ],
-            load: ({done}) => {
+            load: ({done}: {done: (s: string) => void}) => {
                 done('ok')
             }
         }

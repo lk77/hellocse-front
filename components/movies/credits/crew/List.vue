@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type {MovieCredits} from "~/types/tmdb/data/credits/MovieCredits";
+import type {MovieCredit} from "~/types/tmdb/data/credits/MovieCredit";
 
 const {items} = defineProps<{
-    items: MovieCredits[]
+    items: MovieCredit[]
 }>()
 
 const orderedItems = computed(() => items

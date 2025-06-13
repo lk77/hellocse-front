@@ -3,12 +3,14 @@ export interface MovieCredit {
     gender: number;
     id: number;
     known_for_department: string;
+    job?: string;
+    department?: string;
     name: string;
     original_name: string;
     popularity: number;
     profile_path: string;
     cast_id: number;
-    character: string;
+    character?: string;
     credit_id: string;
     order: number;
 }

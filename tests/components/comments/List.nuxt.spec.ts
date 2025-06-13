@@ -1,4 +1,4 @@
-
+import { expect, it } from 'vitest'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
 import List from "~/components/comments/List.vue";
 

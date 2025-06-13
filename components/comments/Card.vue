@@ -1,16 +1,17 @@
 <script setup lang="ts">
+import type {Comment} from "~/types/comments/comment";
 import { createReusableTemplate } from '@vueuse/core'
 import { parser } from 'posthtml-parser'
 
 const {comment} = defineProps<{
-    comment: object
+    comment: Comment
 }>()
 
 const elements = parser(comment.message);
 
 const [DefineTemplate, ReuseTemplate] = createReusableTemplate()
 
-const isAllowed = (tag) => ['p', 'span', 'strong', 'em', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(tag)
+const isAllowed = (tag:string) => ['p', 'span', 'strong', 'em', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(tag)
 </script>
 
 <template>
@@ -18,9 +19,9 @@ const isAllowed = (tag) => ['p', 'span', 'strong', 'em', 'pre', 'h1', 'h2', 'h3'
         <component :is="element.tag" v-if="isAllowed(element.tag)" :style="element.attrs?.style">
             <template v-for="(content,index) in element.content">
                 <template v-if="typeof content == 'string'">
-                    <span :data-test="'element.' + parentKey + '.' + index">{{ content }}</span>
+                    <span :key="parentKey + '.' + index" :data-test="'element.' + parentKey + '.' + index">{{ content }}</span>
                 </template>
-                <ReuseTemplate v-else :key="parentKey + '.' + index" :parentKey="parentKey + '.' + index" :element="content"/>
+                <ReuseTemplate v-else :key="parentKey + '.' + index" :parent-key="parentKey + '.' + index" :element="content"/>
             </template>
         </component>
     </DefineTemplate>
@@ -38,9 +39,9 @@ const isAllowed = (tag) => ['p', 'span', 'strong', 'em', 'pre', 'h1', 'h2', 'h3'
                 <div class="font-sansfont-bold text-left text-white" data-test="comment.message">
                     <template v-for="(element, index) in elements">
                         <template v-if="typeof element == 'string'">
-                            <span :data-test="'element.' + index">{{ element }}</span>
+                            <span :key="index" :data-test="'element.' + index">{{ element }}</span>
                         </template>
-                        <ReuseTemplate v-else :key="index" :parentKey="index" :element="element"/>
+                        <ReuseTemplate v-else :key="index" :parent-key="index" :element="element"/>
                     </template>
                 </div>
             </div>

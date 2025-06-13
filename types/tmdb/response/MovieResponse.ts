@@ -1,4 +1,4 @@
-import type {Movie} from "~/types/tmdb/data/Movie";
+import type {Movie} from "../data/Movie";
 
 export interface MovieResponse {
     page: number;

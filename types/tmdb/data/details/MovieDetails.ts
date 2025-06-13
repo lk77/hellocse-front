@@ -1,6 +1,7 @@
 import type {Genre} from "~/types/tmdb/data/Genre";
 import type {ProductionCompanies} from "~/types/tmdb/data/details/production/ProductionCompanies";
 import type {ProductionCountries} from "~/types/tmdb/data/details/production/ProductionCountries";
+import type {SpokenLanguage} from "~/types/tmdb/data/details/SpokenLanguage";
 
 export interface MovieDetails {
     adult: boolean;

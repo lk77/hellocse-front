@@ -5,7 +5,7 @@ import debounce from 'debounce';
 
 definePageMeta({
     title: 'Movies',
-    description: 'List of movies.'
+    description: 'List of comments.'
 })
 
 const page = await useStorage('movie_page', 0);
@@ -36,7 +36,7 @@ async function discoverMovie(): Promise<array> {
 }
 
 /**
- * Search movies by title
+ * Search comments by title
  */
 async function searchMovie(): Promise<array> {
     const data: MovieResponse = await $fetch('/api/tmdb/search/movie', {
@@ -54,7 +54,7 @@ async function searchMovie(): Promise<array> {
 }
 
 /**
- * Search or discover movies as needed
+ * Search or discover comments as needed
  */
 async function api(): Promise<array> {
     if(search.value && search.value.length > 3) {
@@ -65,7 +65,7 @@ async function api(): Promise<array> {
 }
 
 /**
- * Load new movies when needed
+ * Load new comments when needed
  *
  * @param done
  */

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {z} from 'zod';
+import type {MovieResponse} from "~/types/tmdb/response/MovieResponse";
 
 const discoverMovieSchema = z.object({
     page: z.optional(z.preprocess(Number, z.number().min(1))).default('1')

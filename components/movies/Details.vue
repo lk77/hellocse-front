@@ -9,7 +9,7 @@ const {movie, credits} = defineProps<{
 }>()
 const emit = defineEmits(['update:comments']);
 
-const onUpdateComments = (val) => {
+const onUpdateComments = (val: object[]) => {
     emit('update:comments', val);
 }
 
@@ -29,31 +29,31 @@ const emptyStar = 10 - halfStar - fullStar;
                         <img :src="imagePrefix + '/w154' +  movie.poster_path" alt="movie poster" class="w-[154px] h-auto !m-auto object-cover pt-2 xl:pt-0">
                     </div>
                     <div class="flex flex-col xl:w-9/12 xs:w-full pl-5 pt-2 xl:pt-0">
-                        <h1 class="font-sans font-bold text-left text-white" :class="movie.title.length < 20 ? 'text-4xl' : 'text-3xl'">
+                        <h1 class="font-sans font-bold text-left text-white" :class="movie.title?.length < 20 ? 'text-4xl' : 'text-3xl'" data-test="movie.title">
                             {{ movie.title }}
                         </h1>
-                        <h3 class="font-sansfont-bold text-left text-white" :class="movie.tagline.length < 50 ? 'text-xl' : 'text-md'">
+                        <h3 class="font-sansfont-bold text-left text-white" :class="movie.tagline?.length < 50 ? 'text-xl' : 'text-md'" data-test="movie.tagline">
                             {{ movie.tagline }}
                         </h3>
-                        <p class="font-sans font-semibold text-left text-white">
+                        <p class="font-sans font-semibold text-left text-white" data-test="movie.release_date">
                             {{ (new Date(movie.release_date)).toLocaleDateString('en-US') }}
                         </p>
                         <ul class="flex flex-row flex-wrap flex-wrap py-3">
-                            <li v-for="(genre,index) in movie.genres" :key="index" class="font-sans font-semibold mr-3 !px-2 bg-yellow-500 text-white rounded-sm text-center mt-1">
+                            <li v-for="(genre,index) in movie.genres" :key="index" class="font-sans font-semibold mr-3 !px-2 bg-yellow-500 text-white rounded-sm text-center mt-1" :data-test="'movie.genres.'+index">
                                 {{ genre.name }}
                             </li>
-                            <li v-for="(companies,index) in movie.production_companies" :key="index" class="font-sans font-semibold mr-3 !px-2 border-1 text-white rounded-sm text-center mt-1">
+                            <li v-for="(companies,index) in movie.production_companies" :key="index" class="font-sans font-semibold mr-3 !px-2 border-1 text-white rounded-sm text-center mt-1" :data-test="'movie.production_companies.'+index">
                                 {{ companies.name }}
                             </li>
                         </ul>
-                        <div class="flex flex-row py-1">
+                        <div class="flex flex-row py-1" data-test="movie.vote_average">
                             <v-icon v-for="n in fullStar" :key="n" icon="mdi-star" color="yellow-darken-3"/>
                             <v-icon v-for="n in halfStar" :key="n" icon="mdi-star-half-full" color="yellow-darken-3"/>
                             <v-icon v-for="n in emptyStar" :key="n" icon="mdi-star-outline" color="yellow-darken-3"/>
-                            <span class="text-yellow-darken-3 pl-2">({{ movie.vote_count }} votes)</span>
+                            <span class="text-yellow-darken-3 pl-2" data-test="movie.vote_count">({{ movie.vote_count }} votes)</span>
                         </div>
                         <div class="pt-5 xl:min-h-0 overflow-hidden">
-                            <p class="!text-left pr-2 h-[100px]">
+                            <p class="!text-left pr-2 h-[100px]" data-test="movie.overview">
                                 {{ movie.overview }}
                             </p>
                         </div>

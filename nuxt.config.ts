@@ -11,16 +11,10 @@ export default defineNuxtConfig({
         '@vueuse/nuxt',
         '@pinia/nuxt'
     ],
-    eslint: {
-        // options here
-    },
+    eslint: {},
     vuetify: {
-        moduleOptions: {
-            /* module specific options */
-        },
-        vuetifyOptions: {
-            /* vuetify options */
-        },
+        moduleOptions: {},
+        vuetifyOptions: {},
     },
     tailwindcss: {
         theme: {
@@ -42,5 +36,8 @@ export default defineNuxtConfig({
         publicAssets: [
             {dir: "./../node_modules/tinymce", baseURL: "/assets/tinymce"}
         ]
+    },
+    vite: {
+
     }
 })
