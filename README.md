@@ -1,75 +1,41 @@
-# Nuxt Minimal Starter
+# HelloCse - Test Technique front
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Prérequis
 
-## Setup
+- WSL
+- Node.js
 
-Make sure to install dependencies:
+## Installation via WSL
 
-```bash
-# npm
+- Installez les dépendances npm :
+````bash
 npm install
+````
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
+- Build le projet :
+````bash
 npm run build
+````
 
-# pnpm
-pnpm build
+- Completez le fichier .env à l'aide du fichier .env.example
 
-# yarn
-yarn build
+- Lancer le projet :
+````bash
+node .output/server/index.mjs
+````
 
-# bun
-bun run build
-```
+## Execution des tests
 
-Locally preview production build:
+Lancez les tests via :
 
-```bash
-# npm
-npm run preview
+````bash
+npm run test
+````
 
-# pnpm
-pnpm preview
+## Lint
 
-# yarn
-yarn preview
+Lancez eslint via :
 
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+````bash
+npm run lint
+````
