@@ -51,6 +51,7 @@ if (import.meta.client) {
             <div class="flex flex-row flex-wrap w-full">
                 <div
 v-for="(item, index) in items" :key="item" class="!p-2 h-[400px]" :class="{
+                        'w-1/4': nbItems > 3,
                         'w-1/3': nbItems === 3,
                         'w-1/2': nbItems === 2,
                         'w-full': nbItems === 1
